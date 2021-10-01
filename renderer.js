@@ -47,6 +47,6 @@ const patch = (n1, n2) => {
         mount(n2, n1ElParent) // 挂载新节点
         console.log('patch');
     } else {
-
+        const el = n2.el = n1.el
     }
 }
