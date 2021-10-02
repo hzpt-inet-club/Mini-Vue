@@ -65,6 +65,7 @@ const patch = (n1, n2) => {
                 }
             }
         }
+
         // 2.2 删除旧的props
         for (const key in oldProps) {
             if (!(key in newProps)) {
