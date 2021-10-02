@@ -120,8 +120,6 @@ const patch = (n1, n2) => {
                         el.removeChild(item.el)
                     })
                 }
-
-
             }
         }
     }
