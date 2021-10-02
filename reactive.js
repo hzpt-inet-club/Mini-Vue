@@ -42,7 +42,7 @@ function getDep (target, key) {
 }
 
 // vue2对raw进行数据劫持
-function reactive (raw) {
+/* function reactive (raw) {
     Object.keys(raw).forEach(key => {
         const dep = getDep(raw, key)
         let value = raw[key]
@@ -61,6 +61,24 @@ function reactive (raw) {
         })
     })
     return raw
+} */
+
+// vue3进行raw数据劫持
+function reactive (raw) {
+    return new Proxy(raw, {
+        get (target, key) {
+            const dep = getDep(target, key)
+            dep.depend()
+            return target[key]
+        },
+        set (target, key, newValue) {
+            const dep = getDep(target, key)
+            target[key] = newValue
+            dep.depend()
+        }
+
+    })
+
 }
 
 
@@ -87,7 +105,7 @@ watchEffect(function () {
     console.log("effect4:", foo.height);
 })
 
-info.counter++;ß
+info.counter++;
 // info.name = "why";
 
 // foo.height = 2; */
