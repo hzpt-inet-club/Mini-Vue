@@ -98,9 +98,9 @@ const patch = (n1, n2) => {
                     mount(item, el)
                 })
             } else {
-                /* 前面有相同节点的原生进行patch操作 */
                 // oldChildren [v1,v2,v3]
                 // newChildren [v1,v2,v3,v4,v5]
+                /* 1.前面有相同节点的原生进行patch操作 */
                 const commonLength = Math.min(oldChildren.length, newChildren.length) // 拿到更短的长度
                 for (let i = 0; i < commonLength; i++) {
                     patch(oldChildren[i], newChildren[i])
