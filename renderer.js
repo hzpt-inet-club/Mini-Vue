@@ -106,6 +106,21 @@ const patch = (n1, n2) => {
                     patch(oldChildren[i], newChildren[i])
                 }
 
+                /* 2.newChildren > oldChildren */
+                if (newChildren.length > oldChildren.length) {
+                    newChildren.slice(oldChildren.length).forEach(item => {
+                        mount(item, el)
+                    })
+                }
+
+                /* 3.newChildren < oldChildren */
+                if (newChildren.length < oldChildren.length) {
+                    oldChildren.slice(newChildren.length).forEach(item => {
+                        el.removeChild(item.el)
+                    })
+                }
+
+
             }
         }
     }
